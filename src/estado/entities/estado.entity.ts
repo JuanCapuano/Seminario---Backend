@@ -8,7 +8,9 @@ export class Estado {
     @PrimaryGeneratedColumn()
     id: number;
     @Column()
-    valor: string;
+    ambito:string;
+    @Column()
+    nombre: string;
 
     @OneToMany(()=> OfertaEmpleo,ofertaempleo => ofertaempleo.estado)
     ofertaempleo:OfertaEmpleo;

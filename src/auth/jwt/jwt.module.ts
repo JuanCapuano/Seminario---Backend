@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -24,18 +24,13 @@ import { AuthGuard } from 'src/auth/guard/auth.guard';
       }),
       inject: [ConfigService],
     }),
-    UserModule, 
-    CompanyModule
+    forwardRef(()=>UserModule), 
+    forwardRef(()=>CompanyModule),
   ],
-  providers: [
-    // La estrategia de autenticación de Passport
-    JwtStrategy,
-    // Tu servicio personalizado de lógica de tokens (Refresh)
-    JwtService,
-    // Los Guards que usarás en los controladores
-    AuthGuard,
-  ],
-  // Exporta lo necesario para que otros módulos lo usen
+  providers: [JwtStrategy,JwtService,AuthGuard],
   exports: [JwtService, JwtModule, AuthGuard], 
 })
 export class AuthModule {}
+
+export { JwtModule };
+

@@ -1,1 +1,3 @@
-export class CambioEstado {}
+export class CambioEstado{
+
+}

@@ -1,7 +1,8 @@
+import { CambioEstado } from "src/cambio-estado/entities/cambio-estado.entity";
 import { Company } from "src/company/entities/company.entity";
 import { Estado } from "src/estado/entities/estado.entity";
 import { SolicitudEmpleo } from "src/solicitud-empleo/entities/solicitud-empleo.entity";
-import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('oferta_empleo')
 export class OfertaEmpleo {
@@ -32,9 +33,5 @@ export class OfertaEmpleo {
     @ManyToOne(() => Estado, estado => estado.ofertaempleo)
     @JoinColumn({name: 'id_estado'})
     estado: Estado;
-
-
-    
-
 
 }
